@@ -2,9 +2,9 @@ spring:
   security.enable-csrf: false
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://ec2-54-73-167-224.eu-west-1.compute.amazonaws.com:5432/d5ceklh5i1s321
-    username: dbhbyfocqpgpqo
-    password: "0d90dd3324551b75a38ac2d5ddd55d23139dd86d2d2558eee824fb5df9d989cc"
+    url: jdbc:postgresql://ec2-176-34-105-15.eu-west-1.compute.amazonaws.com/d8jtjtgo53tasc
+    username: sbhcjsoywaxabt
+    password: "e9ca04b0c16d5c5b2ac20dfd48fdcfb6e97222bc28b157c41300b6be13720812"
   jpa:
     properties:
       hibernate:
