@@ -1,0 +1,14 @@
+spring:
+  security.enable-csrf: false
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://ec2-54-73-167-224.eu-west-1.compute.amazonaws.com:5432/d5ceklh5i1s321
+    username: dbhbyfocqpgpqo
+    password: "0d90dd3324551b75a38ac2d5ddd55d23139dd86d2d2558eee824fb5df9d989cc"
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQL10Dialect
+        show_sql: true
+        temp:
+          use_jdbc_metadata_defaults: false
