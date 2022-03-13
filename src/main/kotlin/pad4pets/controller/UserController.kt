@@ -2,26 +2,27 @@ package pad4pets.controller
 
 import org.springframework.web.bind.annotation.CrossOrigin
 import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
+import pad4pets.dto.requestDto.RoleToUserDto
+import pad4pets.entity.Role
 import pad4pets.entity.User
-import pad4pets.repository.UserRepository
+import pad4pets.service.UserService
 
 @CrossOrigin
 @RestController
-@RequestMapping("/users")
+@RequestMapping("/api")
 class UserController(
-        private val userRepository: UserRepository
+        private val userService: UserService
 ) {
-    @GetMapping("/{id}")
-    fun getUserById(@PathVariable("id")id:Long): User =
-            userRepository.getById(id)
+    @GetMapping("/users")
+    fun getUsers(): List<User> = userService.getUsers()
 
-    @PostMapping
-    fun create(@RequestBody user: User): User {
-       return userRepository.save(user)
-    }
+    @PostMapping("/user/save")
+    fun createUser(@RequestBody user: User) = userService.saveUser(user)
+
+    @PostMapping("/role/changeUserRole")
+    fun addRoleToUser(@RequestBody form: RoleToUserDto) = userService.changeUserRole(form.username,form.roleName)
 }

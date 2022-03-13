@@ -5,7 +5,7 @@ import org.springframework.boot.runApplication
 
 @SpringBootApplication
 class Pad4petsApplication
+	fun main(args: Array<String>) {
+		runApplication<Pad4petsApplication>(*args)
+	}
 
-fun main(args: Array<String>) {
-	runApplication<Pad4petsApplication>(*args)
-}
