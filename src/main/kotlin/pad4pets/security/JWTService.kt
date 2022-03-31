@@ -7,7 +7,7 @@ import pad4pets.entity.Role
 import java.util.*
 
 @Service
-class JWTProvider() {
+class JWTService() {
 
     fun createToken(login: String, userRole: Role): String {
         val claims = Jwts.claims().setSubject(login)

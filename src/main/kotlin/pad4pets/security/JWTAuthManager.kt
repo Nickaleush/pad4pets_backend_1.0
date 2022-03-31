@@ -8,7 +8,7 @@ import org.springframework.security.core.userdetails.UserDetailsService
 
 @Configuration
 class JWTAuthManager(
-        private val jwtProvider: JWTProvider,
+        private val jwtProvider: JWTService,
         private val userDetailsService: UserDetailsService
 ): AuthenticationManager {
 

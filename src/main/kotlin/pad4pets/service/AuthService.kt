@@ -7,7 +7,7 @@ import pad4pets.dto.requestDto.SignInDto
 import pad4pets.entity.Role
 import pad4pets.entity.User
 import pad4pets.repository.UserRepository
-import pad4pets.security.JWTProvider
+import pad4pets.security.JWTService
 
 @Service
 interface AuthService {
@@ -18,7 +18,7 @@ interface AuthService {
 @Service
 class AuthServiceImpl(
         private val userRepository: UserRepository,
-        private val jwtProvider: JWTProvider,
+        private val jwtProvider: JWTService,
         private val passwordEncoder: PasswordEncoder
 ): AuthService{
 

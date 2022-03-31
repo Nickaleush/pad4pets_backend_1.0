@@ -25,4 +25,5 @@ class AuthenticationController(
         val token = authService.signIn(signInForm)
         return  token
     }
+
 }

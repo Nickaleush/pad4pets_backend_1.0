@@ -13,6 +13,7 @@ import org.springframework.security.core.userdetails.UserDetailsService
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter
+import pad4pets.entity.Role
 
 
 @Configuration
@@ -34,7 +35,8 @@ class SecurityConfig(
                 .formLogin().disable()
                 .logout().disable()
         http.sessionManagement().sessionCreationPolicy(STATELESS)
-        http.authorizeHttpRequests().antMatchers("/api/auth/signUp").permitAll()
+        http.authorizeHttpRequests().antMatchers("/api/auth/**").permitAll()
+        http.authorizeHttpRequests().antMatchers("/api/pets/**").hasAuthority(Role.WITHOUT_PREMIUM.name)
         http.authorizeHttpRequests().anyRequest().authenticated()
         http.addFilterBefore(jwtAuthFilter, BasicAuthenticationFilter::class.java)
     }
