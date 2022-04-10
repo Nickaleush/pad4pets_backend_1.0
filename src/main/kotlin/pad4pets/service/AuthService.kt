@@ -27,7 +27,6 @@ class AuthServiceImpl(
         if (passwordEncoder.matches(loginDto.password, user.password)) {
             return jwtProvider.createToken(user.username, user.role)
         } else throw IllegalArgumentException() //обработать
-
     }
 
     override fun signIn(signInDto: SignInDto): String {
@@ -35,5 +34,4 @@ class AuthServiceImpl(
         userRepository.save(user)
         return jwtProvider.createToken(user.username, user.role)
     }
-
 }
