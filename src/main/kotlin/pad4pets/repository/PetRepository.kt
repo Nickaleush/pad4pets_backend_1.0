@@ -5,5 +5,4 @@ import pad4pets.entity.Pet
 
 interface PetRepository: JpaRepository<Pet, Long> {
     fun findByName(name:String): Pet?
-
 }

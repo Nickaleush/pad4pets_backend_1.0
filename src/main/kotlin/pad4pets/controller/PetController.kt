@@ -16,8 +16,8 @@ class PetController(
         return petService.add(pet)
     }
 
-    @PatchMapping("/{id}/name")
-    fun updatePetName(@PathVariable id: Long, @RequestBody name: String):Pet {
-        return petService.updateName(id,name)
+    @PutMapping
+    fun updatePetName( @RequestBody pet: Pet):Pet {
+        return petService.updatePet(pet)
     }
 }

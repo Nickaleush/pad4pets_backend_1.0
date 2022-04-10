@@ -7,7 +7,7 @@ import pad4pets.repository.PetRepository
 @Service
 interface PetService {
     fun add(pet: Pet): Pet
-    fun updateName(id: Long, name: String): Pet
+    fun updatePet(pet: Pet): Pet
 }
 
 @Service
@@ -16,16 +16,12 @@ class PetServiceImpl(
 ):PetService {
 
     override fun add(pet: Pet): Pet {
-        val pet = Pet(null,pet.name, pet.birth, pet.type, pet.sex, pet.color, pet.sterilization)
         return  petRepository.save(pet)
     }
 
-    override fun updateName(id: Long, name: String): Pet {
-        val updatedPetOptional = petRepository.findById(id)
-        if (updatedPetOptional.isPresent){
-            val updatedPet = updatedPetOptional.get()
-            updatedPet.name = name
-            return  petRepository.save(updatedPet)
+    override fun updatePet(pet: Pet): Pet {
+        if (pet.id != null && petRepository.existsById(pet.id)){
+           return petRepository.save(pet)
         } else throw IllegalArgumentException("Pet is not found!") // TODO:обработать
     }
 }
