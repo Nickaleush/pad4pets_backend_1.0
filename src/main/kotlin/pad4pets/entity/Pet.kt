@@ -14,5 +14,5 @@ data class Pet(
         var type: String,
         var sex: String,
         var color: String,
-        var sterilization: Boolean
+        var sterilization: String
 )
