@@ -4,7 +4,7 @@ import java.util.Date
 import javax.persistence.*
 
 @Entity
-@Table(name = "pets")
+@Table(name = "Pets")
 data class Pet(
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
