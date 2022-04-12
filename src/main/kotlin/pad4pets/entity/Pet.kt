@@ -10,7 +10,7 @@ data class Pet(
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         val id: Long?,
         var name: String,
-        var birth: Date,
+        var birth: String,
         var type: String,
         var sex: String,
         var color: String,

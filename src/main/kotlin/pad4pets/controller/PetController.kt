@@ -17,7 +17,7 @@ class PetController(
     }
 
     @PutMapping
-    fun updatePetName( @RequestBody pet: Pet):Pet {
+    fun updatePet( @RequestBody pet: Pet):Pet {
         return petService.updatePet(pet)
     }
 }
