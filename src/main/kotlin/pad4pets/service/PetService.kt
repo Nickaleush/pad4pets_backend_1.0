@@ -8,6 +8,7 @@ import pad4pets.repository.PetRepository
 interface PetService {
     fun add(pet: Pet): Pet
     fun updatePet(pet: Pet): Pet
+    fun getPetList(userId: Long): List<Pet>
 }
 
 @Service
@@ -24,4 +25,7 @@ class PetServiceImpl(
            return petRepository.save(pet)
         } else throw IllegalArgumentException("Pet is not found!") // TODO:обработать
     }
+
+    override fun getPetList(userId: Long) = petRepository.findPetListById(userId)
+
 }

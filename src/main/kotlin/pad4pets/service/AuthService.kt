@@ -30,7 +30,7 @@ class AuthServiceImpl(
     }
 
     override fun signIn(signInDto: SignInDto): String {
-        val user = User(null,signInDto.email, signInDto.username, signInDto.password, Role.WITHOUT_PREMIUM )
+        val user = User(null,signInDto.email, signInDto.username, passwordEncoder.encode(signInDto.password), Role.WITHOUT_PREMIUM )
         userRepository.save(user)
         return jwtProvider.createToken(user.username, user.role)
     }
