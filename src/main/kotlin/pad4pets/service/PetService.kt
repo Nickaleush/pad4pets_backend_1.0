@@ -27,7 +27,7 @@ class PetServiceImpl(
         if (pet.id != null && petRepository.existsById(pet.id)){
             pet.user = User(id= userId)
            return petRepository.save(pet)
-        } else throw IllegalArgumentException("Pet is not found!") // TODO:обработать
+        } else throw IllegalArgumentException("Pet is not found!") // TODO:обработать exception
     }
 
     private fun Pet.toDto(): PetDTO =
@@ -42,6 +42,7 @@ class PetServiceImpl(
                     sterilization = this.sterilization
             )
 
-    override fun getPetList(userId: Long) = petRepository.findPetListByUserId(userId)  .map { it.toDto() }// TODO: обработать ошибку, если email = null
+    override fun getPetList(userId: Long) = petRepository.findPetListByUserId(userId)
+            .map { it.toDto() }// TODO: обработать ошибку, если email = null
 
 }
