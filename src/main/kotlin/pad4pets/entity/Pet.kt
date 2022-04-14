@@ -18,5 +18,5 @@ data class Pet(
         var sterilization: String,
         @ManyToOne(fetch = FetchType.LAZY)
         @JoinColumn(name = "user_id")
-        var user: User
+        var user: User?
 )
