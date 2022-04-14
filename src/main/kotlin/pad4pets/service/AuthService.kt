@@ -25,13 +25,13 @@ class AuthServiceImpl(
     override fun logIn(loginDto: LoginDto): String {
         val user = userRepository.findByEmail(loginDto.email)?: throw IllegalArgumentException() //обработать экспшн
         if (passwordEncoder.matches(loginDto.password, user.password)) {
-            return jwtProvider.createToken(user.username, user.role)
+            return jwtProvider.createToken(user.email, user.role)
         } else throw IllegalArgumentException() //обработать
     }
 
     override fun signIn(signInDto: SignInDto): String {
         val user = User(null,signInDto.email, signInDto.username, passwordEncoder.encode(signInDto.password), Role.WITHOUT_PREMIUM )
         userRepository.save(user)
-        return jwtProvider.createToken(user.username, user.role)
+        return jwtProvider.createToken(user.email, user.role)
     }
 }

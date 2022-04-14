@@ -9,8 +9,8 @@ import java.util.*
 @Service
 class JWTService() {
 
-    fun createToken(login: String?, userRole: Role): String {
-        val claims = Jwts.claims().setSubject(login)
+    fun createToken(email: String?, userRole: Role): String {
+        val claims = Jwts.claims().setSubject(email)
         claims["role"] = userRole.name
         val currentDate = Date()
         val validationTime = Date(currentDate.time + 600000)
@@ -21,7 +21,7 @@ class JWTService() {
                 .signWith(SignatureAlgorithm.HS256, "Dimaloh").compact()
     }
 
-    fun getLogin(token: String): String {
+    fun getEmail(token: String): String {
         return Jwts.parser().setSigningKey("Dimaloh").parseClaimsJws(token).body.subject
     }
 

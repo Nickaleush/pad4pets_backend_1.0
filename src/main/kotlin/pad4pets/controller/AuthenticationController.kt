@@ -21,9 +21,8 @@ class AuthenticationController(
     }
 
     @PostMapping("/signUp")
-    fun signIn(@RequestBody signInForm: SignInDto): String{
-        val token = authService.signIn(signInForm)
-        return  token
+    fun signIn(@RequestBody signInForm: SignInDto): String {
+        return authService.signIn(signInForm)
     }
 
 }
