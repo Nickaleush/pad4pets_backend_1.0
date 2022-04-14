@@ -9,7 +9,7 @@ import java.util.*
 @Service
 class JWTService() {
 
-    fun createToken(login: String, userRole: Role): String {
+    fun createToken(login: String?, userRole: Role): String {
         val claims = Jwts.claims().setSubject(login)
         claims["role"] = userRole.name
         val currentDate = Date()
