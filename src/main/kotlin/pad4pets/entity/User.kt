@@ -14,5 +14,5 @@ data class User(
     @Enumerated(EnumType.STRING)
      var role: Role,
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user") // получение питомцев по полю из другой таблицы
-     val pets: List<Pet>
+     val pets: List<Pet> = mutableListOf()
 )
