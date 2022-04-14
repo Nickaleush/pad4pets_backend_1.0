@@ -12,5 +12,7 @@ data class User(
     var username: String,
     var password: String,
     @Enumerated(EnumType.STRING)
-     var role: Role
+     var role: Role,
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user") // получение питомцев по полю из другой таблицы
+     val pets: List<Pet>
 )

@@ -15,5 +15,8 @@ data class Pet(
         var breed: String,
         var sex: String,
         var color: String,
-        var sterilization: String
+        var sterilization: String,
+        @ManyToOne(fetch = FetchType.LAZY)
+        @JoinColumn(name = "user_id")
+        val user: User
 )
