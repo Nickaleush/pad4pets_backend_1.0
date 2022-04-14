@@ -6,14 +6,14 @@ import pad4pets.entity.Pet
 
 interface PetRepository: JpaRepository<Pet, Long> {
 
-    @Query("SELECT pet " +
-            "FROM Pet pet " +
-            "WHERE pet.name = :name")
-    fun findByName(name:String): Pet?
+//    @Query("SELECT pet " +
+//            "FROM Pet pet " +
+//            "WHERE pet.name = :name")
+//    fun findByNameByUserEmail(name:String): Pet?
 
     @Query("SELECT pet " +
             "FROM Pet pet " +
-            "WHERE pet.user.id = :userId")
-    fun findPetListById(userId: Long): List<Pet>
+            "WHERE pet.user.email = :email")
+    fun findPetListByEmail(email: String): List<Pet>
 
 }

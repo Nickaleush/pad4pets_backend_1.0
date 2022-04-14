@@ -12,9 +12,9 @@ class UserDetailsServiceImpl(
         private val userRepository: UserRepository
 ): UserDetailsService {
 
-    override fun loadUserByUsername(username: String): UserDetails {
-        val user: User = userRepository.findByUsername(username)?: throw IllegalArgumentException()
-        return org.springframework.security.core.userdetails.User(user.username, user.password,
+    override fun loadUserByUsername(email: String): UserDetails {
+        val user: User = userRepository.findByEmail(email)?: throw IllegalArgumentException() // TODO: обработать exc
+        return org.springframework.security.core.userdetails.User(user.email, user.password,
                 mutableListOf(SimpleGrantedAuthority(user.role.name)))
     }
 }

@@ -36,8 +36,7 @@ class SecurityConfig(
                 .logout().disable()
         http.sessionManagement().sessionCreationPolicy(STATELESS)
         http.authorizeHttpRequests().antMatchers("/api/auth/**").permitAll()
-        http.authorizeHttpRequests().antMatchers("/api/pets/**").permitAll()
-//      http.authorizeHttpRequests().antMatchers("/api/pets/**").hasAuthority(Role.WITHOUT_PREMIUM.name)
+        http.authorizeHttpRequests().antMatchers("/api/pets/**").hasAuthority(Role.WITHOUT_PREMIUM.name)
         http.authorizeHttpRequests().anyRequest().authenticated()
         http.addFilterBefore(jwtAuthFilter, BasicAuthenticationFilter::class.java)
     }
