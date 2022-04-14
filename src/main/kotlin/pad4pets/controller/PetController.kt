@@ -12,12 +12,13 @@ import pad4pets.service.PetService
 class PetController(
         private val petService: PetService
 ) {
+    //TODO: вынести principals в отдельную переменную email
     @PostMapping
     fun addPet(@RequestBody pet: Pet, authentication: Authentication) = petService.add(pet,authentication.principal.toString()  )
 
     @PutMapping
     fun updatePet( @RequestBody pet: Pet, authentication: Authentication) = petService.updatePet(pet, authentication.principal.toString())
 
-    @GetMapping("user/{userId}")
-    fun getAllPetsByUserId(@PathVariable userId: Long) = petService.getPetList(userId)
+    @GetMapping
+    fun getAllPetsByUserId(authentication: Authentication) = petService.getPetList(authentication.principal.toString())
 }
