@@ -1,16 +1,17 @@
 package pad4pets.service
 
 import org.springframework.stereotype.Service
-import pad4pets.dto.requestDto.PetDTO
+import pad4pets.dto.requestDto.PetDTORequest
 import pad4pets.entity.Pet
 import pad4pets.entity.User
 import pad4pets.repository.PetRepository
 
 @Service
 interface PetService {
-    fun add(pet: Pet, userId: Long): Pet
-    fun updatePet(pet: Pet, userId: Long): Pet
-    fun getPetList(userId: Long): List<PetDTO>
+    fun add(petDTO: PetDTORequest, userId: Long): Pet
+    fun updatePet(petId:Long, petDTO: PetDTORequest, userId: Long): Pet
+    fun getPetList(userId: Long): List<Pet>
+    fun deletePet(petId: Long, userId: Long)
 }
 
 @Service
@@ -18,31 +19,46 @@ class PetServiceImpl(
         private val petRepository: PetRepository
 ):PetService {
 
-    override fun add(pet: Pet,userId: Long): Pet {
-        pet.user = User(id = userId)
+    override fun add(petDTO: PetDTORequest, userId: Long): Pet {
+        val pet = Pet(
+                name = petDTO.name,
+                birth = petDTO.birth,
+                type = petDTO.type,
+                breed = petDTO.breed,
+                sex = petDTO.sex,
+                color = petDTO.color,
+                sterilization = petDTO.sterilization,
+                user =User(id = userId)
+        )
         return petRepository.save(pet)
     }
 
-    override fun updatePet(pet: Pet, userId: Long): Pet {
-        if (pet.id != null && petRepository.existsById(pet.id)){
-            pet.user = User(id= userId)
-           return petRepository.save(pet)
+    override fun updatePet(petId:Long, petDTO: PetDTORequest, userId: Long): Pet {
+        val updatedPet = Pet(
+                id = petId,
+                name = petDTO.name,
+                birth = petDTO.birth,
+                type = petDTO.type,
+                breed = petDTO.breed,
+                sex = petDTO.sex,
+                color = petDTO.color,
+                sterilization = petDTO.sterilization,
+                user =User(id = userId)
+        )
+        if ( petRepository.existsByUserId(petId,userId)) {
+            updatedPet.user = User(id= userId)
+           return petRepository.save(updatedPet)
         } else throw IllegalArgumentException("Pet is not found!") // TODO:обработать exception
     }
 
-    private fun Pet.toDto(): PetDTO =
-            PetDTO(
-                    id = this.id,
-                    name = this.name,
-                    birth = this.birth,
-                    type =this.type,
-                    breed = this.breed ,
-                    sex = this.sex ,
-                    color = this.color ,
-                    sterilization = this.sterilization
-            )
+    override fun getPetList(userId: Long): List<Pet> = petRepository.findPetListByUserId(userId) // TODO: обработать ошибку, если email = null
 
-    override fun getPetList(userId: Long) = petRepository.findPetListByUserId(userId)
-            .map { it.toDto() }// TODO: обработать ошибку, если email = null
+    override fun deletePet(petId: Long,userId: Long) {
+        if (petRepository.existsByUserId(petId,userId)){
+            petRepository.deletePetByPetId(petId)
+        } else throw IllegalArgumentException("Pet is not found!") // TODO:обработать exception
+    }
+
+
 
 }

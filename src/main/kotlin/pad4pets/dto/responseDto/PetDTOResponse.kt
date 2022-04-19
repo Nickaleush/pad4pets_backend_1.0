@@ -1,6 +1,6 @@
-package pad4pets.dto.requestDto
+package pad4pets.dto.responseDto
 
-data class PetDTO(
+data class PetDTOResponse(
         val id: Long?,
         var name: String,
         var birth: String,

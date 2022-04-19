@@ -1,6 +1,7 @@
 package pad4pets.entity
 
-import java.util.Date
+import pad4pets.dto.requestDto.PetDTORequest
+import pad4pets.dto.responseDto.PetDTOResponse
 import javax.persistence.*
 
 @Entity
@@ -8,7 +9,7 @@ import javax.persistence.*
 data class Pet(
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
-        val id: Long?,
+        val id: Long? = null,
         var name: String,
         var birth: String,
         var type: String,
@@ -19,4 +20,6 @@ data class Pet(
         @ManyToOne(fetch = FetchType.LAZY)
         @JoinColumn(name = "user_id")
         var user: User?
-)
+) {
+         fun toDto(): PetDTOResponse = PetDTOResponse(id, name, birth, type, breed , sex , color , sterilization)
+}
