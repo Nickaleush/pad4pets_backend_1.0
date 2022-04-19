@@ -4,7 +4,7 @@ import org.springframework.security.core.Authentication
 import org.springframework.web.bind.annotation.*
 import pad4pets.dto.requestDto.PetDTORequest
 import pad4pets.dto.responseDto.PetDTOResponse
-import pad4pets.entity.Pet
+import pad4pets.service.entity.Pet
 import pad4pets.service.PetService
 
 

@@ -1,8 +1,8 @@
 package pad4pets.service
 
 import org.springframework.stereotype.Service
-import pad4pets.entity.Role
-import pad4pets.entity.User
+import pad4pets.service.entity.Role
+import pad4pets.service.entity.User
 
 @Service
 interface UserService {

@@ -1,4 +1,4 @@
-package pad4pets.entity
+package pad4pets.service.entity
 
 import javax.persistence.*
 
@@ -12,8 +12,8 @@ data class User(
         var username: String? = null,
         var password: String? = null,
 
-    @Enumerated(EnumType.STRING)
+        @Enumerated(EnumType.STRING)
         var role: Role = Role.WITHOUT_PREMIUM,
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user") // получение питомцев по полю из другой таблицы
+        @OneToMany(fetch = FetchType.LAZY, mappedBy = "user") // получение питомцев по полю из другой таблицы
         val pets: List<Pet> = mutableListOf()
 )

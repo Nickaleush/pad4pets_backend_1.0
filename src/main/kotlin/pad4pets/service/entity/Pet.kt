@@ -1,4 +1,4 @@
-package pad4pets.entity
+package pad4pets.service.entity
 
 import pad4pets.dto.requestDto.PetDTORequest
 import pad4pets.dto.responseDto.PetDTOResponse

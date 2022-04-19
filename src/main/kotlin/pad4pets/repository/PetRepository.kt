@@ -3,7 +3,7 @@ package pad4pets.repository
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.data.jpa.repository.Modifying
 import org.springframework.data.jpa.repository.Query
-import pad4pets.entity.Pet
+import pad4pets.service.entity.Pet
 
 interface PetRepository: JpaRepository<Pet, Long> {
 

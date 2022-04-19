@@ -2,8 +2,8 @@ package pad4pets.service
 
 import org.springframework.stereotype.Service
 import pad4pets.dto.requestDto.PetDTORequest
-import pad4pets.entity.Pet
-import pad4pets.entity.User
+import pad4pets.service.entity.Pet
+import pad4pets.service.entity.User
 import pad4pets.repository.PetRepository
 
 @Service
@@ -28,7 +28,7 @@ class PetServiceImpl(
                 sex = petDTO.sex,
                 color = petDTO.color,
                 sterilization = petDTO.sterilization,
-                user =User(id = userId)
+                user = User(id = userId)
         )
         return petRepository.save(pet)
     }
@@ -43,7 +43,7 @@ class PetServiceImpl(
                 sex = petDTO.sex,
                 color = petDTO.color,
                 sterilization = petDTO.sterilization,
-                user =User(id = userId)
+                user = User(id = userId)
         )
         if ( petRepository.existsByUserId(petId,userId)) {
             updatedPet.user = User(id= userId)

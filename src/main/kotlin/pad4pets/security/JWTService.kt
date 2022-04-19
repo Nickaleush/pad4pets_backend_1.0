@@ -3,7 +3,7 @@ package pad4pets.security
 
 import io.jsonwebtoken.*
 import org.springframework.stereotype.Service
-import pad4pets.entity.Role
+import pad4pets.service.entity.Role
 import java.util.*
 
 @Service
